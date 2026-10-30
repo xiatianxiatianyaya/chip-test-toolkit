@@ -1,0 +1,4 @@
+interface:
+  display_name: "芯片测试与数据整理"
+  short_description: "规划功耗与模拟电压测试，核验条件和原始数据，并整理可追溯的DS待回填清单"
+  default_prompt: "使用 $chip-test 整理本次芯片测试条件、可执行步骤及结果记录，并明确哪些数据仍待核验。"

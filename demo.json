@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "campaign_id": "SIMULATED-DEMO-NOT-DEVICE-DATA",
+  "points": [
+    {
+      "id": "power-demo", "sample_id": "DEMO-001", "parameter": "IDD_RUN",
+      "unit": "uA", "source_kind": "simulated", "source_ref": "synthetic example",
+      "conditions": {"supply_v": 3.3, "temperature_c": 25, "power_mode": "RUN", "sysclk_hz": 8000000, "hclk_hz": 8000000, "execution_memory": "SRAM", "workload": "while(1)", "regulator_setting": "nominal", "debug_probe": "disconnected"},
+      "precheck": "pass", "postcheck": "pass", "min_valid_samples": 3,
+      "expected_registers": {"CLOCK_MODE": "example nominal"},
+      "observed_registers": {"CLOCK_MODE": "example nominal"},
+      "observations": [
+        {"timestamp": "2026-01-01T00:00:00+00:00", "status": "valid", "value": 100.0},
+        {"timestamp": "2026-01-01T00:00:01+00:00", "status": "valid", "value": 102.0},
+        {"timestamp": "2026-01-01T00:00:02+00:00", "status": "valid", "value": 101.0},
+        {"timestamp": "2026-01-01T00:00:03+00:00", "status": "invalid", "value": null, "raw": "overrange", "reason": "simulated overrange"}
+      ]
+    },
+    {
+      "id": "analog-config-mismatch-demo", "sample_id": "DEMO-001", "parameter": "ANALOG_NODE",
+      "unit": "V", "source_kind": "simulated", "source_ref": "synthetic mismatch example",
+      "conditions": {"supply_v": 3.3, "temperature_c": 25, "power_mode": "RUN", "regulator_setting": "nominal", "cpu_state": "running"},
+      "precheck": "pass", "postcheck": "fail", "min_valid_samples": 1,
+      "expected_registers": {"TEST_SELECT": "node-A"},
+      "observed_registers": {"TEST_SELECT": "node-B"},
+      "observations": [{"timestamp": "2026-01-01T00:01:00+00:00", "status": "valid", "value": 1.2}]
+    }
+  ]
+}
